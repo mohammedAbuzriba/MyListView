@@ -7,18 +7,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ly.youcan.mylistview.R
 import ly.youcan.mylistview.UserActivity
 import ly.youcan.mylistview.databinding.ActivityCostumListviewBinding
-import ly.youcan.mylistview.databinding.ActivityMainBinding
 import ly.youcan.mylistview.databinding.AlertLayoutDialogBinding
-import ly.youcan.mylistview.databinding.PostLayoutDialogBinding
 
-class CostumListviewActivity : AppCompatActivity(), TextWatcher {
-    private lateinit var binding: ActivityCostumListviewBinding
+class CostumListviewActivity : AppCompatActivity(), TextWatcher,OnSetClick {
+    //private lateinit var binding: ActivityCostumListviewBinding
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnAdd: Button
@@ -59,6 +56,7 @@ class CostumListviewActivity : AppCompatActivity(), TextWatcher {
         recyclerView.isClickable=true
 
         myadapter=CoustemAdapter(this,arrayname)
+        myadapter.onClick=this
         recyclerView.adapter=myadapter
 
 //        recyclerView.setOnClickListener(){
@@ -134,6 +132,29 @@ class CostumListviewActivity : AppCompatActivity(), TextWatcher {
         }
         myadapter=CoustemAdapter(this,arraynamefilter)
         recyclerView.adapter=myadapter
+    }
+
+    override fun onItemClick(name: Names) {
+
+        val i = Intent(this, UserActivity::class.java)
+        i.putExtra("name",name.name)
+        i.putExtra("phone",name.phon)
+        i.putExtra("country",name.age)
+        i.putExtra("imageId",name.image)
+
+        startActivity(i)
+    }
+
+    override fun addItem(context: CoustemAdapter, position: Int, name: Names) {
+        context.names.add(position,name)
+        context.notifyItemRemoved(position)
+        context.notifyItemRangeChanged(position,arrayname.size)
+    }
+
+    override fun removeItem(context:CoustemAdapter,position: Int) {
+        context.names.removeAt(position)
+        context.notifyItemRemoved(position)
+        context.notifyItemRangeChanged(position,context.names.size)
     }
 
 

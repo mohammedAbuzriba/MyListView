@@ -2,7 +2,6 @@ package ly.youcan.mylistview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ly.youcan.mylistview.databinding.ActivityMainBinding
 import ly.youcan.mylistview.databinding.ActivityUserBinding
 
 class UserActivity : AppCompatActivity() {
@@ -15,12 +14,12 @@ class UserActivity : AppCompatActivity() {
 
         val name=intent.getStringExtra("name")
         val phone=intent.getStringExtra("phone")
-        val country=intent.getStringExtra("country")
+        val country=intent.getIntExtra("country",0)
         val imageId=intent.getIntExtra("imageId",R.drawable.a)
 
         binding.textViewname.text=name
         binding.textViewphone.text=phone
-        binding.textViewcountry.text=country
+        binding.textViewcountry.text=country.toString()
         binding.imageView.setImageResource(imageId)
     }
 }

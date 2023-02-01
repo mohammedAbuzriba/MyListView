@@ -1,7 +1,6 @@
 package ly.youcan.mylistview.listview2
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +8,16 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.snackbar.Snackbar
-import ly.youcan.mylistview.MainActivity
 import ly.youcan.mylistview.R
-import ly.youcan.mylistview.UserActivity
 
-class CoustemAdapter(val context: Context,val names:ArrayList<Names>):RecyclerView.Adapter<CoustemAdapter.MyViewHolder>(){
+class CoustemAdapter(val context: CostumListviewActivity,val names:ArrayList<Names>):RecyclerView.Adapter<CoustemAdapter.MyViewHolder>(){
 
-    class MyViewHolder(itemView: View): ViewHolder(itemView){
+    var onClick:OnSetClick?=context
+
+    inner class MyViewHolder(itemView: View): ViewHolder(itemView){
         val txtView = itemView.findViewById(R.id.title) as TextView
         val txtView2 = itemView.findViewById(R.id.body) as TextView
         val imgView = itemView.findViewById(R.id.logo) as ImageView
@@ -48,23 +46,16 @@ class CoustemAdapter(val context: Context,val names:ArrayList<Names>):RecyclerVi
 
         }
         holder.itemView.setOnClickListener(){
-            Snackbar.make(it,"UserId: ${name.name}\nId: ${name.age}", Snackbar.LENGTH_SHORT).show()
 
-            val i = Intent(context, UserActivity::class.java)
-            i.putExtra("name",name.name)
-            i.putExtra("phone",name.phon)
-            i.putExtra("country",name.age)
-            i.putExtra("imageId",name.image)
-
-            context.startActivity(i)
+            onClick?.onItemClick(name=name)
 
         }
 
         holder.add.setOnClickListener(){
-            addItem(position,name)
+            onClick?.addItem(this,position,name)
         }
         holder.remov.setOnClickListener(){
-            removeItem(position)
+            onClick?.removeItem(this,position)
         }
 
     }
@@ -80,6 +71,7 @@ class CoustemAdapter(val context: Context,val names:ArrayList<Names>):RecyclerVi
     private fun removeItem(position: Int) {
         names.removeAt(position)
         notifyItemRemoved(position)
+
         notifyItemRangeChanged(position,names.size)
 
     }
@@ -88,7 +80,20 @@ class CoustemAdapter(val context: Context,val names:ArrayList<Names>):RecyclerVi
 }
 
 
-
+//holder.itemView.setOnClickListener(){
+////            Snackbar.make(it,"UserId: ${name.name}\nId: ${name.age}", Snackbar.LENGTH_SHORT).show()
+////
+////            val i = Intent(context, UserActivity::class.java)
+////            i.putExtra("name",name.name)
+////            i.putExtra("phone",name.phon)
+////            i.putExtra("country",name.age)
+////            i.putExtra("imageId",name.image)
+////
+////            context.startActivity(i)
+//
+//    onClick?.onItemClick(name=name)
+//
+//}
 
 fun myList(){
     class MyAdapter(context:Context,names:ArrayList<Names>)
