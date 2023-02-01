@@ -60,18 +60,6 @@ class MainActivity : AppCompatActivity() {
         }
         binding.listview.isClickable=true
         binding.listview.adapter=MyAdapter(this,userArrayList)
-        binding.listview.setOnItemClickListener{
-            parent,view,positon,id->
-            val name = name[positon]
-            val phone = phoneNo[positon]
-            val country = country[positon]
-            val imageId = imageId[positon]
-            val i = Intent(this,UserActivity::class.java)
-            i.putExtra("name",name)
-            i.putExtra("phone",phone)
-            i.putExtra("country",country)
-            i.putExtra("imageId",imageId)
-            startActivity(i)
-        }
+
     }
 }

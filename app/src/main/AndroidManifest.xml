@@ -12,7 +12,7 @@
         android:theme="@style/Theme.MyListView"
         tools:targetApi="31">
         <activity
-            android:name=".listview2.CostumListviewActivity"
+            android:name=".listview2.listviewActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -21,7 +21,7 @@
             android:name=".UserActivity"
             android:exported="false" />
         <activity
-            android:name=".listview2.listviewActivity"
+            android:name=".listview2.CostumListviewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

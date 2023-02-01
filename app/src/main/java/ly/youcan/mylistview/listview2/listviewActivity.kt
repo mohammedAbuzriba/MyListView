@@ -19,18 +19,18 @@ class listviewActivity : AppCompatActivity() {
 
         listview=findViewById(R.id.mylistview)
         val arrayname=ArrayList<Names>()
-        arrayname.add(Names("Mohamed",15,"09171508",R.drawable.a))
-        arrayname.add(Names("ali",20,"09171508",R.drawable.a))
-        arrayname.add(Names("ali",20,"09171508",R.drawable.a))
-        arrayname.add(Names("Mohamed",25,"09171508",R.drawable.a))
-        arrayname.add(Names("ahmed",18,"09171508",R.drawable.a))
-        arrayname.add(Names("ahmed",18,"09171508",R.drawable.a))
-        arrayname.add(Names("fatima",27,"09171508",R.drawable.a))
-        arrayname.add(Names("sara",16,"09171508",R.drawable.a))
-        arrayname.add(Names("sara",16,"09171508",R.drawable.a))
+        arrayname.add(Names("Mohamed",15,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("ali",20,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("ali",20,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("Mohamed",25,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("ahmed",18,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("ahmed",18,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("fatima",27,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("sara",16,"09171508",R.drawable.ic_launcher_background))
+        arrayname.add(Names("sara",16,"09171508",R.drawable.ic_launcher_background))
 
-        val myadapter=MyAdapter(this,arrayname)
-        listview.adapter=myadapter
+        //val myadapter=MyAdapter(this,arrayname)
+        //listview.adapter=myadapter
 //        listview.onItemClickListener =
 //            AdapterView.OnItemClickListener { _, view, _, _ ->
 //                val txtv =view as TextView
